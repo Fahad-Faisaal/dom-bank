@@ -13,6 +13,13 @@ function addTransactions (id, amount) {
   currTransaction.innerText = totalTransaction;
 }
 
+function updateBalance (amount) {
+  const currBalance = document.getElementById('balance-total');
+  const currBalanceAmount = parseFloat(currBalance.innerText);
+  const totalBalance = currBalanceAmount + amount;
+  currBalance.innerText = totalBalance;
+}
+
 // Handler for deposits
 document.getElementById('btn-deposit').addEventListener('click', function() {
   // Getting deposit amount
@@ -22,10 +29,7 @@ document.getElementById('btn-deposit').addEventListener('click', function() {
   addTransactions('deposit-total', depositAmount);
 
   // updating balance
-  const currBalance = document.getElementById('balance-total');
-  const currBalanceAmount = parseFloat(currBalance.innerText);
-  const totalBalance = currBalanceAmount + depositAmount;
-  currBalance.innerText = totalBalance;
+  updateBalance(depositAmount);
 });
 
 // handler for withdraw
@@ -36,9 +40,6 @@ document.getElementById('btn-withdraw').addEventListener('click', function() {
   // Updating total withdraw
   addTransactions('withdraw-total', withdrawAmount);
 
-  // updating balance
-  const currBalance = document.getElementById('balance-total');
-  const currBalanceAmount = parseFloat(currBalance.innerText);
-  const totalBalance = currBalanceAmount - withdrawAmount;
-  currBalance.innerText = totalBalance;
+  // Updating Balance
+  updateBalance(-withdrawAmount);
 });
